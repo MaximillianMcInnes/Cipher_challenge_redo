@@ -1,0 +1,127 @@
+#from math import sqrt
+import numpy as np
+from sympy import Matrix
+from nostril import nonsense
+from statistics import mode
+from clipboard import copy
+#from IOC import cal_IOC
+from wordninja import split
+from random import randint
+rm_chars="\n/:*?™®<>|.&@#(_+`©~);-+=^$!,'’ 	" + '"'
+side=int(input("What type of hill cipher do you want to use? (e.g. 2 for 2x2 hill cipher)\n\n"))
+#cipher="""RVSUU CNTAN NNFWO ATAEL ILESU NOBCG DDRZS DANDZ ASSLR RIOHA FTRNA RDWHV UAHAH LTBMU NTWWS AMBOF TTNGW AHHDD RIANG KDIOF TTLWM MDJEA OCDKU FLEOP EERIE WTXDD SZEIN GEVEH TAEFA NKPOF TAEPA STMIU EXHLV VUFTP ASTAE TEVFJ CVLZC CTBOB WETAA SERSW OTPDE XIKJD SLIKE EBPUN IBASW ALWAS BFIVG UPTRR TBOBA LLJIL EELSE LADBS OYERA CARDL NNLCU FEMNA OHHHV DNTAB ACKGA YOITU UNTAE RNBVV UFTXV ZRUOS SSSOE INGEV EHTAE POPBZ THARR VSLHP MFHLL LMBLT GNTXR JBFGG NGHLR RILOB TAELO ISWOB CGDDR ZSDAN DWHLY DRVEH ANNNA NDWOC KREVT HHVSH IBALF TRTHL CMSLH LNORF UAHAH LRKOZ ANGRE CFTRR DHBSI MFXHL SWEQE HSZAK ERBVT BNTOC DKEEL EHHNQ AFTXR RWDIT EAASR VADYR OHALK GEWTT RKEHW ETABF NWAMI VIVIB IILWY FIASL OFYUA STAAT ANNNW WSJUH NVNTA NIVTX LWIOE RCGSE UAGRI VGUPT RRTBO BFWOA TAEFA NKKNQ TAATH LWWSL RPIVG ZOINE AVEPI BWDER HLWWS UAUGN TAEWE IMQDW OPEVE PYGNT OBTAE LODEX HHTPE LADBF ERUHA BLPTH IVTXR TETTH RTRRC MHPSJ EGERT FEWSS GKSTU NEZER WDERH LRVAL IAEHT AATTA IAWWS SMUSL AKELE WTNCM THTAE WTHRP IVTXR IOUAT IWNBN ROCNR DRNGI UPGOJ IAEMT PASOB LJWDE RWAEB PAAIN RDZHH TPEON RWWBP UNHVW PHLVV UFTPO FKODW HHTAE FEKAN THCCL NUFAT ELIAO HHLRF PIIWN FHLDL DQTAA VEQAN YYNQI BDLDQ TMAKE YSDOB GGFYE VTAAT THCQN IIVCG HPMFO QOCPT RRTXN BWDEL ASBFE RTNRE EHOJE VTHTA EEGKN PYQOH HLYAA NBVIT DDNRW KPTRR TBOBE BPAOW TBNTH PMMSS NNSKE XASWA LWASA NEQPA OMEIT TLWMM DJEAO CDKUF LSADB FERRL NAIVG GNVLW EKALD DTTBS OYEVI VGYEV VDCGO ITHFY HLVVU FTYOF SWVZR RLJEE RJBFF TRVAN NNGUT LUMPX CKOIS LHVUA HAHLN NMQHH DFAUG NTAEV ATTXN GIWNF TKAIG NTTWW YGNUE VIVTX RMIMW OHLTH LOUMT AATHL RDOHH LRNAS AHIAT HRZAN ANDKA DNNMQ DKEVA FTXRR NAAST KOBGG NNGKN GOTTA EGUFP TRJPN RZNTB FDWIU EWTHR ZEWOT TXNSE ETNRV DWHLT ARVEF ERSXR RNXLT NJOCD KUFLL NQTTL WMMDJ EENQS ZEWAY SLHHT BSOHF SZEWT TRKEH THGKT VULIW UMABO ITAIU SZERO HIKEH TAATN BOBEI VZRTA RRZEH ANYRH PNTIV THOFO ITHFY HLVVU FTTNQ DLSUU MSWDW HPSOI BHOEV FWIMN QLJNA WDODO WNGEH OITMH HTHNY YYFJW XOLEW WARVE ZEVAC CGSKE HNBTE OBGGF YEVTA ATTAE CSHOH TXDWH LPPTM EVNVN GHLAC CGSKL ZGYOB ALMAS LEZEV YMCEA SIWNG HLBPX QHHTP ASACC GSKEH HHDWH LNHMN EVGOV ZNOYR HLSMM AFYHL DDYYN QMANG HPNGH LDDTX WAHHD VPDTM EHIBT HOPUN WAARE XRRIV EHTHN BTBCG TAIVG YLTKO TAATA NDLTP ASIUP GEWSA VZTAA TTAEC WKRBE HIBOI TMOUE XHLRK HLYAO BSLRL CVEHA THLOF YRHHT MHLVV UFTVO BCGAL EHACO REPEE DLNTT HTAEG UFPTR KRVAS ULEEH VARDR FHOWN FHPDG ERBZT AESRZ GONNL EALLX ADGKD XRZNT TAEVE ZOZUN IWNNN QUMEH THPPY MFKTK AITHR JIVTA EFRZT BSZAR MKIBW WSXAN CKFZL MUNMM DHSWN FEKID ERTAA TANNN SZEED ZASFZ LWOTT AEQYR HHNQL PGKNQ OTTAE GUFPT RIIVG NEVSL OFYGS LHHTL HLSLA GEHTA EZAUL EBSEE KSNNS SNRXZ UMEXO PRZNT IVJXD LEXOV EPPWE VFNNQ ANDER VAKTA EGORE ENQTH BFATT TLWMM DJEXO HHLGU LOIBW WSSGU OREJF TRKBV TLOAE LOKAS THRPA BOITU ULIMD WRVAS ULEHI LNGQK IBEVI VGZRL EENQU HFTRK UHATE PYDOF ANNNT TLWMM DJELA DALRV ADYRU LNRDD NQBFT KAYEH HLRKH LTKUY SLOFY GSANG HLRVP DRKAT TTCJE H""".upper()
+while 1:
+	cipher=input("What is the text that wish to change?\n\n").upper()
+	#cipher="""VNFB""".upper()
+	for i in rm_chars:
+		cipher=cipher.replace(i,"")
+	if (len(cipher)%side)!=0:
+		print("You need to have "+str(side-(len(cipher)%side))+" more "+("letters" if (side-(len(cipher)%side))!=1 else "letter")+" so that the text may be encrypted/decrypted")
+	else:
+		break
+del rm_chars
+def invertable(matrix):
+	try:
+		sympy_matrix=Matrix(matrix)
+		if sympy_matrix.det()%26==0:
+			raise(Exception)
+		sympy_matrix.inv_mod(26)
+		return 1
+	except Exception:
+		return 0
+
+if input("Do you want to decrypt a hill cipher?\n\n").lower() == "yes":
+	keyword = input("Do you know the ENCRYPTION key (if you do enter it):\n").upper().replace(" ","")
+	if keyword=="" or keyword=="NO":
+		de_keyword=input("Do you know the DECRYPTION key (if you do enter it):\n").replace(" ","")
+	else:
+		de_keyword=""
+	if (keyword=="" or keyword=="NO") and (de_keyword=="" or de_keyword=="NO"):
+		brute=int(input("0 - Bigrams (Recommended for large texts)\n1 - Brute Force (Recommended if you don't care how long it takes)\n\n"))
+#		side = 2
+		cipher_list = tuple(cipher[i:i+side] for i in range(0,(len(cipher)),side))
+		# cipher_matrices=[]
+		# for cipher_part in cipher_list:
+		# 	cipher_matrices.append(np.matrix([[ord(i)-65] for i in list(cipher_part)]))
+		cipher_matrices=tuple(np.matrix([[ord(i)-65] for i in list(cipher_part)]) for cipher_part in cipher_list)
+		if brute:
+			keyword_list, i = [0 for i in range(side**2)], 0
+			while 1:
+				text, loop, j = "", 1, 0
+				while loop:
+					if keyword_list[j]<25:
+						keyword_list[j]+=1
+						break
+					elif j+1<len(keyword_list):
+						keyword_list[j]=0
+						j+=1
+					else:
+						loop=0
+				if not loop:
+					break
+				matrix=np.matrix([keyword_list[i:i+side] for i in range(0,len(keyword_list),side)])
+				if not invertable(matrix):
+					continue
+				print("".join(["\033[H\033[JTrying key: ", ", ".join([str(i).zfill(2) for i in keyword_list])]))
+				try:
+	#				matrix=np.matrix([[ord(keyword[row*side+column])-64 for column in range(side)] for row in range(side)])
+	#				matrix=np.matrix(Matrix(np.matrix.tolist(matrix)).inv_mod(26))
+					for cipher_matrix in cipher_matrices:
+						text+="".join([chr((i[0]%26)+65) for i in np.matrix.tolist(matrix*cipher_matrix)])
+				except Exception:
+					continue
+	#			if cal_IOC(text, 1, do_avg=1)["avg"]>=0.06 and not nonsense(text):
+				if not nonsense(text):
+					break
+		else:																		# Uses bigrams decrypt 2x2
+			cribs=(np.matrix([[ord(i)-65] for i in mode(cipher_list)]), np.matrix([[ord(i)-65] for i in mode([i for i in cipher_list if i != mode(cipher_list)])]))
+			try:
+				matrix=np.matrix((np.matrix(Matrix(np.concatenate((cribs[0].T,cribs[1].T),axis=0)).inv_mod(26))*np.matrix([[19,7],[7,4]]))%26).T
+				inv_matrix=np.matrix(Matrix(matrix).inv_mod(26))
+			except Exception:
+				inv_matrix=np.matrix((np.matrix(Matrix(np.matrix([[19,7],[7,4]]).T).inv_mod(26)))*np.concatenate((cribs[0].T,cribs[1].T),axis=0)%26).T
+				matrix=np.matrix(Matrix(inv_matrix).inv_mod(26))
+			text=""
+			for cipher_part in cipher_list:
+				cipher_matrix=np.matrix([[ord(i)-65] for i in list(cipher_part)])
+				text+="".join([chr((i[0]%26)+65) for i in np.matrix.tolist(matrix*cipher_matrix)])
+			print("\033[H\033[JEncryption Key: "+", ".join([str(i) for i in np.matrix.tolist(inv_matrix.ravel())[0]])+"\nDecryption Key: "+", ".join([str(i) for i in np.matrix.tolist(matrix.ravel())[0]])+"\n\nText:\n")
+	else:
+#		side = max(int(sqrt(len(keyword.replace(",","")))),int(sqrt(len(de_keyword.replace(",","")))))
+		text = ""									# Uses key to decrypt
+		if keyword!="" and keyword!="NO":
+			keyword_list = keyword.split(",")
+			matrix=np.matrix([[int(keyword_list[row*side+column]) for column in range(side)] for row in range(side)])
+			if not invertable(matrix):
+				exit("Sorry but the key is not valid")
+			matrix=np.matrix(Matrix(np.matrix.tolist(matrix)).inv_mod(26))
+		else:
+			matrix=np.matrix([[int(de_keyword.split(",")[row*side+column]) for column in range(side)] for row in range(side)])
+			if not invertable(matrix):
+				exit("Sorry but the key is not valid")
+		cipher_list=tuple(cipher[i:i+side] for i in range(0,len(cipher),side))
+		for cipher_part in cipher_list:
+			cipher_matrix=np.matrix([[ord(i)-65] for i in list(cipher_part)])
+			text+="".join([chr((i[0]%26)+65) for i in np.matrix.tolist(matrix*cipher_matrix)])
+	if len(input(text+"\n\nText with spaces:\n\n"+" ".join(split(text))+"\n\nDo you want this to be copied to your clipboard? enter anything for yes\n\n"))>0:
+		copy(text)
+else:
+#	side = 2
+	text=""
+	cipher_list = [cipher[i:i+side] for i in range(0,(len(cipher)),side)]
+	if input("Do you want to randomize a key?\n\n").lower() == "yes":
+		while 1:																							# Key randomiser
+			keyword_list=tuple(tuple(randint(0,25) for column in range(side)) for row in range(side))
+			matrix=np.matrix([[keyword_list[row][column] for column in range(side)] for row in range(side)])
+			if invertable(matrix):
+				break
+	else:																									# Enter a custom key
+		keyword=input("What is the encryption key?\n\n").replace(" ","")
+		matrix=np.matrix([[int(keyword.split(",")[row*side+column]) for column in range(side)] for row in range(side)])
+		if not invertable(matrix):
+			exit("Sorry but the key is not valid")
+	for cipher_part in cipher_list:
+		cipher_matrix=np.matrix([[ord(i)-65] for i in list(cipher_part)])
+		text+="".join([chr((i[0]%26)+65) for i in np.matrix.tolist(matrix*cipher_matrix)])
+	if len(input("\033[H\033[JEncyption key: "+", ".join([str(i) for i in np.matrix.tolist(matrix.ravel())[0]])+"\n\nText:\n\n"+text+"\n\nDo you want this to be copied to your clipboard? enter anything for yes\n\n"))>0:
+		copy(text)
