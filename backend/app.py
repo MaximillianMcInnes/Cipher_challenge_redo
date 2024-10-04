@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import runpy
 import os
+import runpy
 
 cipher_text = r"C:\Users\Maximillian Mcinnes\Desktop\Cipher app\backend\back\cipher.txt"
 plain_text = r"C:\Users\Maximillian Mcinnes\Desktop\Cipher app\backend\back\plaintext.txt"
@@ -32,7 +33,8 @@ class TextRequest(BaseModel):
 # Create the /api/affine endpoint that reverses the text
 
 @app.post("/api/keyword_sub")
-async def reverse_text(request: TextRequest):
+async def reverse_text(request: Textsolver):
+    print(f"Received request with text: {request.text}")  # Add this log
     try:
         # Extract the text from the request
         text = request.text
@@ -40,21 +42,24 @@ async def reverse_text(request: TextRequest):
         # Define paths for the input (cipher_text) and output (plain_text) files
 
         # Path to the script you want to run
-        sub_path = r"C:\Users\Maximillian Mcinnes\Desktop\Cipher app\backend\back\substiution.py"
+        sub_path = "substiution.py"
 
         # Write the text to the cipher_text file
         with open(cipher_text, "w", encoding='utf-8') as file:
             file.write(text)
 
         # Run the external Python script that processes the cipher_text file
-        os.system(sub_path)
-
+        print("befpre run")
+        runpy.run_module(sub_path, run_name="__main__")
+        print("after running")
         # Read the deciphered text from the plain_text file
         with open(plain_text, "r", encoding='utf-8') as file:
             deciphered_text = file.read()
 
         # Return the deciphered text in the response
         print(deciphered_text)
+        print("aaaaaa")
+        
         return {"Deciphered Text": deciphered_text}
 
     except Exception as e:

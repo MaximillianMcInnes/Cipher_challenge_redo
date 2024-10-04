@@ -47,7 +47,7 @@ def decipher(text, key):
     return plaintext
 
 # Score the key based on the quadgrams
-quads = r"C:\Users\Maximillian Mcinnes\Desktop\Cipher app\backend\back\quadgrams.txt"
+quads = r"quadgrams.txt"
 quadgrams = NGrams(quads)
 def score_key(ciphertext, key):
     plaintext = decipher(ciphertext, key)
@@ -77,7 +77,7 @@ class OneGramDist(dict):
          return float(self[key]) / self.gramCount
       else:
          return 1.0 / (self.gramCount * 10**(len(key)-2))
-ones = r"C:\Users\Maximillian Mcinnes\Desktop\Cipher app\backend\back\one-grams.txt"
+ones = r"one-grams.txt"
 singleWordProb = OneGramDist(ones)
 
 def wordSeqFitness(words):
@@ -188,7 +188,7 @@ if __name__ == "__main__":
 
     print(f"Decoded text: {corrected_text}")
     end_time = time.time()
-    plain_text = r"C:\Users\Maximillian Mcinnes\Desktop\Cipher app\backend\back\plaintext.txt"
+    plain_text = r"plaintext.txt"
     with open(plain_text, "w", encoding='utf-8') as file:
         file.write(deciphered_text)
         print("written in")

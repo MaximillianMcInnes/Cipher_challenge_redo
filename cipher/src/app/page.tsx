@@ -22,7 +22,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import CubeLoader from '@/components/cubeloader';
+import CubeLoader from "@/components/cubeloader";
 import Technologies from "@/components/technologies";
 
 const cipherOptions = [
@@ -30,7 +30,7 @@ const cipherOptions = [
   { name: "Caesar", label: "caesar" },
   { name: "Affine", label: "affine" },
   { name: "Keyword Substitution", label: "keyword_sub" },
-  {name: "Vigenère", label: "Vigenere"},
+  { name: "Vigenère", label: "Vigenere" },
 ];
 
 // Decoded_text component to display either the loader or the result
@@ -70,7 +70,6 @@ const Decoded_text = ({ text, loading, timeTaken }) => {
   );
 };
 
-
 export default function Home() {
   const [inputText, setInputText] = useState<string>("");
   const [outputText, setOutputText] = useState<string>("");
@@ -105,7 +104,7 @@ export default function Home() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ text: inputText }),
+          body: JSON.stringify({ text: inputText }), // Ensure text is being passed properly
         }
       );
 
@@ -219,7 +218,13 @@ export default function Home() {
       <div className="relative z-[20] w-[97%] h-[0.2rem] bg-gray-800 opacity-[50%] rounded-full mb-8"></div>
 
       {/* Conditionally render Decoded_text based on showBox */}
-      {showBox && <Decoded_text text={outputText} loading={loading} timeTaken={timeTaken} />}
+      {showBox && (
+        <Decoded_text
+          text={outputText}
+          loading={loading}
+          timeTaken={timeTaken}
+        />
+      )}
 
       <Technologies />
       <Team />
