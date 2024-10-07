@@ -5,8 +5,10 @@ import string
 import time
 import wordninja
 from ngram_score import ngram_score
+from pathlib import Path
 
-ngram_path = r'C:\Users\Maximillian Mcinnes\Desktop\Cipher app\backend\back\quadgrams.txt'
+base_dir = Path(__file__).resolve().parent 
+ngram_path = base_dir / 'quadgrams.txt'
 fitness = ngram_score(ngram_path)  # load our quadgram statistics
 
 # Extended Euclidean Algorithm for finding modular inverse
@@ -90,6 +92,9 @@ def main():
     
     end_time = time.time()
     print(f"Execution time: {end_time - start_time} seconds")
+    plain_text = base_dir / 'plaintext.txt'
+    with open(plain_text, "w") as file:
+        file.write(deciphered_text)
 
 if __name__ == '__main__':
     main()

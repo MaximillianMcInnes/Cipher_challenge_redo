@@ -4,8 +4,10 @@ import os
 import string
 import time
 import wordninja
+from pathlib import Path
 
-ngram_path = r'C:\Users\Maximillian Mcinnes\Desktop\Cipher app\backend\back\quadgrams.txt'
+base_dir = Path(__file__).resolve().parent 
+ngram_path = base_dir / 'quadgrams.txt'
 fitness = ngram_score(ngram_path)  # load our quadgram statistics
 
 alphabet = string.ascii_lowercase  # "abcdefghijklmnopqrstuvwxyz"
@@ -67,8 +69,8 @@ def main():
 
     print("Final deciphered text: ")
     print(deciphered_text)
-    plain = r"C:\Users\Maximillian Mcinnes\Desktop\Cipher app\backend\back\plaintext.txt"
-    with open(plain, "w", encoding='utf-8') as file:
+    plain_text = base_dir / 'plaintext.txt'
+    with open(plain_text, "w", encoding='utf-8') as file:
         file.write(deciphered_text)
     
     end_time = time.time()

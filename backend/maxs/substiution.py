@@ -3,7 +3,9 @@ import os
 import time
 import wordninja
 import language_tool_python
+from pathlib import Path
 
+base_dir = Path(__file__).resolve().parent 
 
 ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 ASCII_OFFSET = ord('A')
@@ -47,7 +49,7 @@ def decipher(text, key):
     return plaintext
 
 # Score the key based on the quadgrams
-quads = r"quadgrams.txt"
+quads = base_dir / 'quadgrams.txt'
 quadgrams = NGrams(quads)
 def score_key(ciphertext, key):
     plaintext = decipher(ciphertext, key)
@@ -77,7 +79,9 @@ class OneGramDist(dict):
          return float(self[key]) / self.gramCount
       else:
          return 1.0 / (self.gramCount * 10**(len(key)-2))
-ones = r"one-grams.txt"
+     
+ones = base_dir / 'one-grams.txt'
+
 singleWordProb = OneGramDist(ones)
 
 def wordSeqFitness(words):
