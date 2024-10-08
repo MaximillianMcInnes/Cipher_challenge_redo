@@ -32,6 +32,7 @@ const cipherOptions = [
   { name: "Keyword Substitution", label: "keyword_sub" },
   {name: "Railfence", label: "Railfence"},
   { name: "Vigenère", label: "Vigenere" },
+  { name: "Atbash", label: "Atbash" },
 ];
 
 // Decoded_text component to display either the loader or the result

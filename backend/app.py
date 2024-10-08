@@ -63,6 +63,52 @@ async def keyword_substitution(request: Textsolver):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+#################################################################################################################################
+#Atbash
+# Affine Cipher
+@app.post("/api/Atbash")
+async def affine_solver(request: Textsolver):
+    try:
+        # Logging the text received
+        text = request.text
+        print(f"Received text for Atbash Cipher: {text}")
+        
+        # Ensure base_dir and file paths are correct
+        print(f"Base directory: {base_dir}")
+        print(f"Cipher text file path: {cipher_text}")
+        print(f"Plain text file path: {plain_text}")
+
+        # Write the input text to the cipher_text file
+        with open(cipher_text, "w", encoding='utf-8') as file:
+            file.write(text)
+        print("Successfully wrote cipher text")
+
+        # Define path to the affine cipher script
+        Atbash_path = base_dir / 'Atbash.py'
+        print(f"Atbash script path: {Atbash_path}")
+
+        # Run the external Python script that processes the cipher_text file
+        print("Running railfence cipher script")
+        subprocess.run(['python', str(Atbash_path)])
+        print("railfence cipher script executed successfully")
+
+        # Read the deciphered text from the plain_text file
+        if plain_text.exists():
+            print(f"Plain text file exists: {plain_text}")
+            with open(plain_text, "r", encoding='utf-8') as file:
+                deciphered_text = file.read()
+            print(f"Deciphered text: {deciphered_text}")
+        else:
+            print(f"Plain text file does not exist: {plain_text}")
+            raise HTTPException(status_code=500, detail="Plaintext file not found after Affine solver execution.")
+
+        # Return the deciphered text in the response
+        return {"Deciphered Text": deciphered_text}
+
+    except Exception as e:
+        print(f"Error during Affine cipher processing: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"An error occurred: {str(e)}")
+
 
 
 ########################################################################################################
@@ -85,12 +131,12 @@ async def affine_solver(request: Textsolver):
         print("Successfully wrote cipher text")
 
         # Define path to the affine cipher script
-        affine_path = base_dir / 'railfence.py'
-        print(f"railfence script path: {affine_path}")
+        railfence_path = base_dir / 'railfence.py'
+        print(f"railfence script path: {railfence_path}")
 
         # Run the external Python script that processes the cipher_text file
         print("Running railfence cipher script")
-        subprocess.run(['python', str(affine_path)])
+        subprocess.run(['python', str(railfence_path)])
         print("railfence cipher script executed successfully")
 
         # Read the deciphered text from the plain_text file
