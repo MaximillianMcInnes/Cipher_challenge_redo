@@ -30,6 +30,7 @@ const cipherOptions = [
   { name: "Caesar", label: "caesar" },
   { name: "Affine", label: "affine" },
   { name: "Keyword Substitution", label: "keyword_sub" },
+  {name: "Railfence", label: "Railfence"},
   { name: "Vigenère", label: "Vigenere" },
 ];
 

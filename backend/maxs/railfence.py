@@ -5,6 +5,8 @@ from nostril import nonsense
 from clipboard import copy
 from wordninja import split
 from pathlib import Path
+import time
+import os
 
 base_dir = Path(__file__).resolve().parent 
 
@@ -110,7 +112,6 @@ def decrypt_railfence_with_ngram(input_text, ngram_file, onegram_file):
 
     # Get factors of the length of the text
     factors = [n for n in range(2, len(cipher)+1) if len(cipher) % n == 0 or (len(cipher)-1) % n == 0]
-    print(f"The length of the text is: {len(cipher)}\nColumns that can be tried: {', '.join(str(i) for i in factors)}")
 
     # Load n-grams and one-gram data
     quadgrams = NGrams(ngram_file)
@@ -136,22 +137,37 @@ def decrypt_railfence_with_ngram(input_text, ngram_file, onegram_file):
                     best_fitness = fitness
                     best_decryption = decryption
                     best_key = (rows, offset, direction)
-                    print(f"Rows: {best_key[0]}, Offset: {best_key[1]}, Direction: {'up' if best_key[2] else 'down'}")
-                    print(f"Decrypted Text: {best_decryption}")
     except KeyboardInterrupt:
         pass
 
-    # Final output after decryption
-    if len(input(f"Rows: {best_key[0]}, Offset: {best_key[1]}, Direction: {'up' if best_key[2] else 'down'}\n\nBest Decrypted Text:\n{best_decryption}\n\nDo you want this to be copied to your clipboard? Press any key to copy.\n")) > 0:
-        copy(best_decryption)
+    # Return the best decrypted text
+    return best_decryption
 
-# Take input from user
+# Take input from user and return the decrypted text
 def main():
-    user_input_text = input("Please enter the ciphertext you want to decrypt: ")
+    start_time = time.time()
+    file_path = os.path.join(os.path.dirname(__file__), 'cipher.txt')
+    with open(file_path, "r") as file:
+        ctext = file.read().strip()  # Update with your own file path
+    print(f"cipher text: {ctext}")
 
     ngram_file = base_dir / 'quadgrams.txt'  # Path to quadgrams file
     onegram_file = base_dir / "one-grams.txt"  # Path to one-grams file
-    decrypt_railfence_with_ngram(user_input_text, ngram_file, onegram_file)
+
+    deciphered_text = decrypt_railfence_with_ngram(ctext, ngram_file, onegram_file)
+
+    # Write the decoded text to a file
+    plain_text = base_dir / 'plaintext.txt'
+    with open(plain_text, "w", encoding='utf-8') as file:
+        file.write(deciphered_text)
+
+    # Print the decoded text
+    print(f"Decoded Text: {deciphered_text}")
+
+    end_time = time.time()
+    print(f"Execution time: {end_time - start_time} seconds")
+
+    return deciphered_text
 
 if __name__ == "__main__":
     main()
